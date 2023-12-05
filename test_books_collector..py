@@ -77,3 +77,25 @@ def test_delete_book_from_favorites_empty_list(books_collector, name):
     assert len(books_collector.get_list_of_favorites_books()) == 0
 
 
+@pytest.mark.parametrize("name", ["А", "1984", "Добавили книгу с очень длинным названием"])
+def test_add_book_in_favorites_is_in_favorites_books(books_collector, name):
+    books_collector.add_new_book(name)
+    books_collector.add_book_in_favorites(name)
+    assert name in books_collector.get_list_of_favorites_books()
+
+
+@pytest.mark.parametrize("name", ["", "Добавляем книгу с очень длинным названием"])
+def test_add_book_in_favorites_empty_list(books_collector, name):
+    books_collector.add_new_book(name)
+    books_collector.add_book_in_favorites(name)
+    assert name not in books_collector.get_list_of_favorites_books()
+
+
+@pytest.mark.parametrize("name", ["А", "1984", "Добавили книгу с очень длинным названием"])
+def test_delete_book_from_favorites_empty_list(books_collector, name):
+    books_collector.add_new_book(name)
+    books_collector.add_book_in_favorites(name)
+    books_collector.delete_book_from_favorites(name)
+    assert len(books_collector.get_list_of_favorites_books()) == 0
+
+
