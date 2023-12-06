@@ -98,4 +98,3 @@ def test_delete_book_from_favorites_empty_list(books_collector, name):
     books_collector.delete_book_from_favorites(name)
     assert len(books_collector.get_list_of_favorites_books()) == 0
 
-
